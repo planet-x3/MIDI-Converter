@@ -26,11 +26,19 @@ int main(int argc, char *argv[]) {
 	synth = new_fluid_synth(settings);
 	adriver = new_fluid_audio_driver(settings, synth);
 	
-//	fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
-	fluid_synth_sfload(synth, "gm.sf2", 1);
+	if(fluid_synth_sfload(synth, "gm.sf2", 1) == -1) {
+		printf("\nError loading \"gm.sf2\". Please place a GM-compatible soundfont in the same directory as this program and rename it to \"gm.sf2\".\n\n");
+		exit(1);
+	}
 
 	uint8_t msg;
 	uint8_t par[2];
+
+	fread(&msg, 1, 1, bin);
+
+	printf("File intended for %s\n",
+		(msg == 5) ? "Roland SC-55 (and other GM compatible synths)" :
+		((msg == 6) ? "Roland MT-32 (and compatibles)" : "unknown, possibly corrupted file"));
 
 	uint8_t shortdelay;
 	uint16_t longdelay;
