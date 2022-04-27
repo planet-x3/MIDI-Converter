@@ -42,7 +42,7 @@ By running this command, the original MIDI file will be converted to `midi.bin`,
 
 This repository also contains a small player program based on FluidSynth.
 
-**NOTE**: This player is only intended to test the functionality of the output. While files intended for SC-55 will sound flawless, the quality will severely decrease when attempting to play files intended for the MT-32, as that variant of the soundtrack requires custom instruments to be loaded, which is not possible here.
+**NOTE**: This player is only intended to test the functionality of the output. While files intended for the SC-55 will sound flawless, the quality will severely decrease when attempting to play files intended for the MT-32, as that variant of the soundtrack requires custom instruments to be loaded, which is not possible here.
 
 To compile it, run:
 
@@ -55,5 +55,5 @@ This program also requires a soundfont file (`gm.sf2`) to be placed in the same 
 To play a converted file (after you have supplied your own soundfont file), run:
 
 ```
-./playbin manu.bin
+./playbin menu.bin
 ```
