@@ -1,6 +1,6 @@
 # Planet X3 MIDI converter
 
-A simple utility which converts a Standard MIDI File (.MID) to a format which Planet X3 supports (it is just a long MIDI event dump).
+A simple utility for converting a Standard MIDI File (.MID) into the custom Planet X3 format (it is just a long MIDI event dump).
 
 **IMPORTANT**: The files that this program outputs are uncompressed! They will *not* load in a standard Planet X3 installation, and will likely result in the game crashing upon attempting to load!
 
