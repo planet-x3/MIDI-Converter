@@ -4,6 +4,8 @@ A simple utility which converts a Standard MIDI File (.MID) to a format which Pl
 
 **IMPORTANT**: The files that this program outputs are uncompressed! They will *not* load in a standard Planet X3 installation, and will likely result in the game crashing upon attempting to load!
 
+**ALSO IMPORTANT**: If the output file is over 63798 bytes in size, it will overflow into other parts of memory, causing undefined behavior! If the output file size exceeds this amount, try shaving the original MIDI down (by removing certain "expensive" effects - i.e. vibrato using rapid pitch bend changes, etc.).
+
 ## Dependencies
 
 - a *NIX system (only GNU/Linux has been tested so far), Windows Subsystem for Linux also theoretically possible
