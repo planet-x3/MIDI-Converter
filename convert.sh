@@ -10,4 +10,4 @@ else
 	midicsv "$1" | sed "s/ //g" | cut -d"," -f2- | sort -s -n -k 1,1 > "$2.csv"
 fi
 
-./csv2bin.py "$2.csv" "$2" $3
+"$(dirname $0)/csv2bin.py" "$2.csv" "$2" $3
