@@ -6,12 +6,34 @@
 
 import sys
 
+
+# Function that performs rudimentary MT-32 to General MIDI instrument mapping
+# Only intended for "Apprehension" and "Valiant fighters"
+def prog_gm(n):
+	mappings = {
+		24: 60,
+		29: 122,
+		44: 61,
+		45: 28,
+		47: 94,
+		63: 88,
+		65: 16,
+		66: 32,
+		104: 13,
+		105: 14,
+		109: 36
+	}
+	return mappings[n] if n in mappings else n
+
+
 csv = open(sys.argv[1], "r", errors='replace')
 entries = csv.read().splitlines()
 csv.close()
 
 bin = open(sys.argv[2], "wb")
 bin.write(bytes([int(sys.argv[3])]))
+
+convert_from_mt32 = int(sys.argv[3]) == 5 and sys.argv[4] == "MT-32"
 
 # Read the time division
 
@@ -89,7 +111,7 @@ for entry in entries:
 		bin.write(bytes([0xB0 + int(split[2]), int(split[3]), int(split[4])]))
 
 	elif split[1] == "Program_c":
-		bin.write(bytes([0xC0 + int(split[2]), int(split[3])]))
+		bin.write(bytes([0xC0 + int(split[2]), prog_gm(int(split[3])) if convert_from_mt32 else int(split[3])]))
 
 	elif split[1] == "Pitch_bend_c":
 		bin.write(bytes([0xE0 + int(split[2]), int(split[3]) & 0x7F, int(split[3]) >> 7]))

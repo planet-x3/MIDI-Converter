@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ $# -ne 3 ] && echo "Usage: $0 inputfile outfile headerbyte" && exit 1
+[ $# -ne 3 ] && [ $# -ne 4 ] && echo "Usage: $0 inputfile outfile headerbyte [MT-32]" && exit 1
 
 echo "Converting $1..."
 
@@ -10,4 +10,4 @@ else
 	midicsv "$1" | sed "s/ //g" | cut -d"," -f2- | sort -s -n -k 1,1 > "$2.csv"
 fi
 
-"$(dirname $0)/csv2bin.py" "$2.csv" "$2" $3
+"$(dirname $0)/csv2bin.py" "$2.csv" "$2" "$3" "$4"
